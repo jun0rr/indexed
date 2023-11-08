@@ -13,13 +13,13 @@ import java.util.function.Function;
  */
 public record Indexed<T>(int index, T value) {
   
-  public static <U> Function<U,Indexed<U>> indexed(int start) {
+  public static <U> Function<U,Indexed<U>> builder(int start) {
     AtomicInteger i = new AtomicInteger(start);
     return o->new Indexed(i.getAndIncrement(), o);
   }
   
-  public static <U> Function<U,Indexed<U>> indexed() {
-    return indexed(0);
+  public static <U> Function<U,Indexed<U>> builder() {
+    return builder(0);
   }
   
 }

@@ -23,7 +23,7 @@ public class TestIndexed {
     AtomicInteger val = new AtomicInteger((int)'a');
     IntStream.iterate((int)'a', i->i<=(int)'z', i->++i)
         .mapToObj(Integer::valueOf)
-        .map(Indexed.indexed())
+        .map(Indexed.builder())
         .peek(System.out::println)
         .peek(i->Assertions.assertEquals(idx.getAndIncrement(), i.index()))
         .forEach(i->Assertions.assertEquals(val.getAndIncrement(), i.value().intValue()))
